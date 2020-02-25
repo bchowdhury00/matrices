@@ -58,10 +58,18 @@ multiply a by b, modifying b to be the product
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+  int c;
+  for (c = 0; c < b->cols; c++){
+    double x = a->m[0][0] * b->m[0][c] + a->m[0][1] * b->m[1][c]+ a->m[0][2] * b->m[2][c]+ a->m[0][3] * b->m[3][c];
+    double y = a->m[1][0] * b->m[0][c] + a->m[1][1] * b->m[1][c]+ a->m[1][2] * b->m[2][c]+ a->m[1][3] * b->m[3][c];
+    double z = a->m[2][0] * b->m[0][c] + a->m[2][1] * b->m[1][c]+ a->m[2][2] * b->m[2][c]+ a->m[2][3] * b->m[3][c];
+    double m = a->m[3][0] * b->m[0][c] + a->m[3][1] * b->m[1][c]+ a->m[3][2] * b->m[2][c]+ a->m[3][3] * b->m[3][c];
+    b->m[0][c] = x;
+    b->m[1][c] = y;
+    b->m[2][c] = z;
+    b->m[3][c] = m;
+  }
 }
-
-
-
 /*===============================================
   These Functions do not need to be modified
   ===============================================*/
